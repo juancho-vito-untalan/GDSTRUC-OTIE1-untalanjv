@@ -1,6 +1,7 @@
 public class PlayerNode {
     private Player player;
     private PlayerNode nextPlayer;
+    private PlayerNode previousPlayer;
 
     public PlayerNode(Player player) {
         this.player = player;
@@ -20,5 +21,13 @@ public class PlayerNode {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public PlayerNode getPreviousPlayer() {
+        return previousPlayer;
+    }
+
+    public void setPreviousPlayer(PlayerNode previousPlayer) {
+        this.previousPlayer = previousPlayer;
     }
 }

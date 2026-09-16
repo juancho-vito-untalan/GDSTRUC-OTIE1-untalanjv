@@ -4,6 +4,11 @@ public class PlayerLinkedList {
     public void add(Player player) {
         PlayerNode node = new PlayerNode(player);
         node.setNextPlayer(head);
+
+        if (head!= null) { // only sets previous if there's already a head
+            head.setPreviousPlayer(node); // sets the old head to the previous node of the current head
+        }
+
         head = node;
     }
 
@@ -11,6 +16,10 @@ public class PlayerLinkedList {
         PlayerNode removedNode = head;
 
         head = head.getNextPlayer();
+
+        if (head != null) { // if there r still items in the list, make previous player null to clean up
+            head.setPreviousPlayer(null);
+        }
 
         return removedNode;
     }
@@ -48,4 +57,20 @@ public class PlayerLinkedList {
             currentNode = currentNode.getNextPlayer();
         }
     }
+
+    public void printListBackwards() {
+        PlayerNode currentNode = head;
+
+        System.out.println("TAIL ");
+
+        while (currentNode.getNextPlayer() != null){ // iterates through entire list
+            currentNode = currentNode.getNextPlayer();
+        }
+
+        while (currentNode != null){ //
+            System.out.println(" -> " + currentNode.getPlayer());
+            currentNode = currentNode.getPreviousPlayer();
+        }
+    }
+
 }
